@@ -1,27 +1,90 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE HTML>
+<html>
     <head>
         <meta charset="UTF-8">
-        <title>DOM Events Parte 01</title>
+        <title>Eventos - Parte 2/3</title>
+        
+        <style>
+            #container{
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%);
+                display: inline-block;
+                text-align: center;
+
+            }
+            img{
+                border-radius: 15px;
+            }
+         
+            
+            .button{
+                
+                color:whitesmoke;
+                background-color: black;
+                display: inline-block;
+                font-size: 20px;
+                margin-top: 10px;
+                padding: 10px;
+                border: solid 3px black;
+                font-weight: 800;
+                font-family: Arial, Helvetica, sans-serif;
+                letter-spacing: 1px;
+                border-radius: 10px;
+                text-transform: uppercase;
+                cursor: pointer;
+
+            }
+            .ident{
+                display: inline-block;
+                margin-left: 20px;
+            }
+
+        </style>
         <script>
 
-            function changeh1(i){
+            function mouseOver(element){
+                element.style.color = "black"
+                element.style.backgroundColor = "white";
+                element.style.border = "solid 3px black";
+            }
+            function mouseOut(element){
+                element.style.color = "white"
+                element.style.backgroundColor = "black"
+            }
+            function biggerImage(element){
 
-                let h1 = document.getElementsByTagName("h1")[0];
-                h1.innerText = i.value
-
+                element.width = element.width+50;
+                
+            }
+            function smallerImage(element){
+                element.width = element.width-50;
             }
 
         </script>
-
-
     </head>
-    <body>
+    <body onload="console.log('page load complete')">
 
-        <h1>Este é o meu título</h1>
+        <div id="container">
+            <div>
+                <img id="image" src="./Imagens/v907-aum-60b-a.jpg" width="150">
+            </div>
+            <div class="ident">
+                <div class="button" onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" onclick="biggerImage(document.getElementById('image'))">
+                    <spam>bigger</spam>
+                </div>
+            </div>
 
-        <!-- <input type="text" onchange="changeh1(this)"> -->
-        <input type="text" oninput="changeh1(this)">
+            <div class="ident">
+                <div class="button" onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" onclick="smallerImage(document.getElementById('image'))">
+                    <spam>bigger</spam>
+                </div>
+                
+            </div>
+        
+            
+            
+        </div>
         
     </body>
 </html>
