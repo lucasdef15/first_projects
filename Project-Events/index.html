@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>DOM Events Parte 01</title>
+        <script>
+
+            function changeh1(i){
+
+                let h1 = document.getElementsByTagName("h1")[0];
+                h1.innerText = i.value
+
+            }
+
+        </script>
+
+
+    </head>
+    <body>
+
+        <h1>Este é o meu título</h1>
+
+        <!-- <input type="text" onchange="changeh1(this)"> -->
+        <input type="text" oninput="changeh1(this)">
+        
+    </body>
+</html>
