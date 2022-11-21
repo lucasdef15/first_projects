@@ -1,0 +1,146 @@
+*, *::before, *after{ box-sizing: border-box;}
+
+body{
+    background-color: #F7D4DC;
+}
+
+.imgSize{
+    width: 400px;
+}
+header{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5rem;
+}
+header :is(h1){
+    color: #D61A46;
+    font-size: 2.8rem;
+    line-height: 0.9;
+    font-family: sans-serif;
+    text-transform: uppercase;
+}
+section{
+    
+    display: flex;
+    justify-content: center;
+}
+
+.card{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+    background-color: hsl(0, 3%, 46%);
+}
+.card_text{
+    position: absolute;
+    color: white;
+    text-align: center;
+    font-family: sans-serif;
+    opacity: 0;
+}
+
+.card_text :is(h3){
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    font-size: 20px;
+}
+.card_text :is(p){
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: .5px;
+    font-weight: 600;
+}
+
+.intro{
+    position: relative;
+    display: inline-block;
+}
+.intro::before{
+    content: '';
+    height: 100%;
+    display: block;
+    
+    background-color: #F7D4DC;
+    position: absolute;
+    z-index: -1;
+    right: -20px;
+    left: -20px;
+
+}
+.intro::after{
+    content: '';
+    height: 100%;
+    width: 100vw;
+    display: block;
+    background-color:#D61A46;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    z-index: -2;
+    
+}
+.card_img{
+    max-width: 100%;
+    display: block;
+    transition: opacity ease-out 250ms;
+    opacity: 1;
+}
+.card:hover .card_text{
+    opacity: 1;
+}
+
+.card:hover .card_img{
+    opacity: 0.5;
+}
+
+.card::before{
+    content: '';
+    position: absolute;
+    border-top: 1.5px solid white;
+    border-bottom: 1.5px solid white;
+    top: 1.25em;
+    bottom: 1.25em;
+    left: 1.25em;
+    right: 1.25em;
+    transition: transform ease-out 400ms;
+    transform: scale(0, 1);
+    /* this means that it's starting at a x scale of 0 but the y is still at a 100% 
+    and down there when I hover both of them are at 100%
+    */
+
+}
+.card::after{
+    content: '';
+    position: absolute;
+    border-left: 1.5px solid white;
+    border-right: 1.5px solid white;
+    top: 1.25em;
+    bottom: 1.25em;
+    left: 1.25em;
+    right: 1.25em;
+    transition: transform ease-out 400ms;
+    transform: scale(1, 0);
+
+}
+.card:hover::before{
+    transform: scale(1.05, 1); 
+}
+.card:hover::after{
+    transform: scale(1, 1.05); 
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+footer :is(p){
+    position: relative;
+    top: 120px;
+    font-size: 0.8rem;
+}
