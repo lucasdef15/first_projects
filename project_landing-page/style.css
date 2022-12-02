@@ -1,0 +1,253 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 1.6;
+}
+
+img{
+    max-width: 100%;
+    display: block;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+section{
+    padding: 7em 0;
+}
+
+.container{
+    width: 85%;
+    max-width: 65em;
+    margin: 0 auto;
+}
+
+.split{
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.split > * {
+    /* because of it's div is at 100% the flex-basis here is resetting it to 30% */
+    flex-basis: 30%;
+    min-width: 15em;
+}
+
+
+/* what this is saying is: that any element that is adjacent sibling, so it comes after the first another sibling that is the direct child of spacing */
+
+/* in the html what it is sayng is:  does it have a sibling before it? if it does put a space of 2rem.
+so every element less than h1 in the container gets this space. becase after h1 we only have their parets after it their siblings.
+this is a nice tool because we took out the margins on our h1,h2, h3 and p*/
+.spacing > * + * {
+    margin-top: var(--spacer, 2rem);
+}
+
+.btn{
+    /* the reason to use inline block here is because it's gonna overlap the text above. that's because the <A> tag is by default inline and the margin overlap each other */
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.125em;
+    color: var(--clr-text, #fff);
+    font-weight: 700;
+    padding: .5em 1.25em;
+    border-radius: .25em;
+    background: var(--clr-accent, blue);
+    transition: 
+        transform 250ms ease-in-out,
+        opacity 250ms linear;
+
+    
+}
+
+.btn:hover,
+.btn:focus{
+    transform: scale(1.1);
+    opacity: .9;
+}
+
+.primary-title{
+    font-size: 4rem;
+    /* this is a kind of responsive typografy */
+    /* so the smallest it can be is 3rem the biggest it can be is 4.5rem and in between it's gonna grow in (5vw + 1rem ) rate; */
+    font-size: clamp(3rem, 5vw + 1rem, 4.5rem);
+    line-height: 1;
+    text-transform: uppercase;
+
+}
+.section-title{
+    text-align: center;
+    font-size: clamp(2.5rem, 5vw + 1rem, 4rem);
+    line-height: 1;
+    color: #17353d;
+    margin-bottom: 3rem;
+
+}
+
+.hero{
+    color:white;
+    text-align: center;
+    padding: 15em 0 ;
+    
+    
+    
+    /* background-size: 15%; */
+} 
+
+
+@supports (background-blend-mode: multiply) {
+    .hero{
+        background-image: url(./img/shoe-3.png), radial-gradient(#444, #111);
+        background-blend-mode:multiply;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+}
+
+
+
+.featured{
+    background: #eee;
+}
+
+.featured__item{
+    /* in this case it does not metter because these are flex items now. but we leve it here anyway */
+    display: block;
+    position: relative;
+    transform: scale(.85);
+    transition: transform 250ms ease-in-out;
+    text-decoration: none;
+    color:#333;
+    text-align: center;
+    line-height: 1.2;
+
+}
+
+.featured__item:hover .featured__details,
+.featured__item:focus .featured__details{
+    opacity: 1;
+    text-shadow: 0 0 2em rgba(255, 255, 255, 1)
+}
+
+.featured__item:hover, .featured__item:focus {
+            transform: scale(1);
+}
+
+.featured__details{
+    opacity: 0;
+    transition: opacity 250ms linear;
+}
+
+.featured__details .price{
+    display: block;
+    font-weight: 700;
+    font-size: 2.5rem;
+    
+}
+
+
+.featured__item::after{
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    z-index: -1;
+    /* stacking context learn  */
+
+    /* *****************PADDING****************** */
+    /* 
+    if you do padding of 100% it is based on the width not on the height of it's parent.
+    the same thing is with margins
+
+    I could also have put 100% on only the left OR only the top and it would have been the same.
+
+    the sequence is  padding: top right bottom left;
+    */
+    padding: 75% 75% 0 0;
+    border-radius: 50%;
+    background: #2193b0;
+}
+
+.product{
+    background: radial-gradient(var(--clr-inner, limegreen), var(--clr-outer, purple));
+    padding: 3em;
+    border-radius: 1em;
+    margin-bottom: 5em;
+    text-align: center;
+
+}
+
+.product__title{
+    font-size: clamp(3rem, 5vw + 1rem, 5.5rem);
+    text-transform: uppercase;
+    color:#fff;
+    line-height: 1;
+    text-shadow: 0 0 .2em rgba(0, 0, 0, .2);
+}
+
+.product__image{
+    margin: -5em 0 0 0;
+}
+
+@media(min-width: 45em){
+    .product__title{
+        margin: 0;
+    }
+    .product {
+        text-align: left;
+        margin-bottom: 9em;
+      }
+    
+    .product__image{
+        float: right;
+        width: 65%;
+        shape-outside: url(./img/shoe-1.png);
+        margin: 0 -5em 0 0;
+
+        /* look this up on firefox */
+        /* shape-outside: circle(50%);
+        shape-margin: 1em; */
+    }
+    .product.shoe-left .product__image {
+        float: left;
+        shape-outside: url(../img/shoe-2.png);
+        margin: 0 0 0 -5em;
+        shape-margin: 2em;
+    }
+}
+
+.hero {
+    --clr-accent: #faa700;
+  }
+  
+  .shoe-red {
+    --clr-inner: #faa700;
+    --clr-outer: #e48d00;
+    --clr-accent: #a1173c;
+  }
+  
+  .shoe-white {
+    --clr-inner: #fce4b3;
+    --clr-outer: #eac886;
+    --clr-accent: #2f4858;
+  }
+  
+  .shoe-blue {
+    --clr-inner: #6dd5ed;
+    --clr-outer: #2193b0;
+    --clr-accent: #008951;
+  }
